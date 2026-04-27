@@ -1,0 +1,177 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="/WEB-INF/views/include/header_nosearchbar.jsp" %>
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>비즈니스 회원 이메일 찾기</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <script src="<c:url value='/resources/js/jquery-3.7.1.min.js' />"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/color_orange.css" />">
+    <style>
+     body {
+        --bs-font-sans-erif:margin:0;
+        padding:0;
+        font-size:14px;
+        line-height:1.6;
+        font-family:'Pretendard','Noto Sans KR', 'Apple SD Gothic Neo', '돋움', Dotum, Arial, Sans-serif;
+        color:#464646;
+        letter-spacing:0;
+        -webkit-text-size-adjust:none;
+        font-weight: 400;
+    }
+
+    section{
+      width:1024px;
+      margin:0 auto;
+      margin-top:200px;
+    }
+
+    .login_form{
+      margin:0 auto;
+      width:512px;
+    }
+    
+    .pwfind{
+    	margin-top:20px;
+    	width:512px;
+    	height:50px;
+    }
+    
+    .pwfind a{
+    	display:inline-block;
+    	text-decoration:none;
+    	margin-top:5px;
+    	color:white;
+    	background-color:var(--bs-orange);
+    }
+    
+    #result{
+    	margin-top:20px;
+    }
+    
+    </style>
+    
+	<script> 
+		function bizemailfindFn(event){
+			
+			event.preventDefault();
+			
+			// 전화번호
+			var phone = $("input[name=phone]").val().replace(/-/g,'');
+			
+			// 사업자이름
+			var name = $("input[name=name]").val();
+			
+			// 사업자번호
+			var certificateNo = $("input[name=certificateNo]").val().replace(/-/g,'');
+			
+			var valid = true;
+			
+			// 사업자이름 유효성검사
+			if(name == "") {
+				$("#namespan").text("사업주 이름을 입력해 주세요").css("color","red");
+				valid=false;
+			} else {
+				$("#namespan").text(" ");
+			}
+			
+			// 전화번호 유효성검사
+			if(phone == "" || !/^\d{11}$/.test(phone)) {
+				$("#phonespan").text("올바른 전화번호를 입력해 주세요").css("color","red");
+				valid=false;
+			} else {
+				$("#phonespan").text(" ");
+			}
+			
+			// 사업자번호 유효성검사
+			if(certificateNo === "" || !/^\d{10}$/.test(certificateNo)) {
+				$("#certificateNospan").text("올바른 사업자등록번호를 입력해 주세요").css("color","red");
+				valid=false;
+			} else {
+				$("#certificateNospan").text(" ");
+			}
+			
+			if(!valid) {
+				return false;
+			}
+			
+			// AJAX 요청
+			$.ajax({
+				url: "<c:url value='/biz/biz_account_find/biz_email_find'/>",
+				type: "POST",
+				data: { name: name, phone: phone, certificateNo: certificateNo },
+				dataType: "json",
+				success: function(res){
+					if(res.status === 'success') {
+						$("#result").html(
+					            "<div class='alert alert-success' role='alert'>" +
+					            "이메일은: <strong>" + res.email + "</strong> 입니다." +
+					            "</div>"
+					    );
+			        } else {
+			        	$("#result").html(
+			                    "<div class='alert alert-danger' role='alert'>" +
+			                    res.message +
+			                    "</div>"
+			            );
+			        }
+				},
+				error: function(){
+					$("#result").html("<div class='alert alert-danger'>서버 오류 발생</div>").show();
+				}
+			});
+			
+		}
+	</script>
+</head>
+
+
+<body>
+<section>
+
+  <div class="login_form"><!--수직수평정렬용-->
+    <h1 class="fw-bolder"> 비즈니스 회원 이메일 찾기 </h1>
+    <P>계정에 등록된 정보를 입력해 주세요</P>
+	<form onsubmit="bizemailfindFn(event)">
+    <div class="form-floating">
+      <input type="text" class="form-control" id="name" placeholder="이름을 입력하세요." name="name">
+      <label for="name">이름</label>
+      <span id="namespan" style="display: inline-block;"></span>
+    </div>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="phone" placeholder="전화번호를 입력하세요." name="phone">
+      <label for="phone">전화번호</label>
+      <span id="phonespan" style="display: inline-block;"></span>
+    </div>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="certificateNo" placeholder="사업자등록번호를 입력하세요." name="certificateNo">
+      <label for="certificateNo">사업자등록번호</label>
+      <span id="certificateNospan" style="display: inline-block;"></span>
+    </div>
+
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary " type="submit" style="height:50px;">찾기</button><!--링크를 걸어야 합니다-->
+    </div>
+    </form>
+    
+    <div class="pwfind btn btn-primary"><a href="<c:url value='/biz/biz_account_find/biz_password_find' />">비밀번호 찾기</a></div>
+  
+  	<div id="result"></div>
+  
+  </div>
+  
+	
+	
+</section>
+</body>
+</html>

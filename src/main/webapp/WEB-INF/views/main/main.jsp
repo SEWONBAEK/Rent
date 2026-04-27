@@ -1,0 +1,197 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../include/header_nosearchbar.jsp" %>
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${pageContext.request.contextPath}</title>
+    <link href="https://cdn.jsdelivr.net/npm/@xpressengine/xeicon@2.3.3/xeicon.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            --bs-font-sans-serif:margin:0; padding:0;font-size:14px;line-height:1.6;font-family:'Pretendard','Noto Sans KR', 'Apple SD Gothic Neo', '돋움', Dotum, Arial, Sans-serif;color:#464646;letter-spacing:0;-webkit-text-size-adjust:none;font-weight: 400
+        }
+    </style>
+
+    <script>
+    	$(function(){
+    		let priceFlag = true;
+    		let dateFlag = true;
+    		
+    		//체크박스 전체 선택시 모든 체크박스 선택 또는 해제
+    		$("#everything").change(function(){
+    	        if ($(this).is(':checked')) {
+    	        	$(".form-check-input").prop('checked', true);
+    	        } else {
+    	        	$(".form-check-input").prop('checked', false);
+    	        }
+    		});
+    		
+			//전체 체크박스 외 모든 체크박스 선택 시 전체 체크박스도 선택되기
+			if($(".form-check-input:checked").not('#everything').length == 4){
+				$("#everything").prop('checked', true);
+			}
+			
+			//오늘 이전 날짜는 비활성화
+		    let dtToday = new Date();
+    
+		    let month = dtToday.getMonth() + 1;
+		    let day = dtToday.getDate();
+		    let year = dtToday.getFullYear();
+		    if(month < 10)
+		        month = '0' + month.toString();
+		    if(day < 10)
+		        day = '0' + day.toString();
+		    
+		    let maxDate = year + '-' + month + '-' + day;
+		
+		    $('.date input').attr('min', maxDate);
+			
+			
+    		//체크인날짜<체크아웃날짜 검증
+    		$(".date input").change(function(){
+    			dateFlag = false;
+    			if($(".date input:eq(0)").val()!="" && $(".date input:eq(1)").val()!=""){ //체크인, 체크아웃 날짜 둘 다 입력 시
+    				dateFlag = $(".date input:eq(0)").val()<$(".date input:eq(1)").val(); //전후 옳으면 dateFlag = true
+	    			if(!dateFlag){
+	    				/* alert('체크아웃 날짜는 체크인 날짜보다 후여야 합니다.'); */
+	    			}
+    			} else if ($(".date input:eq(0)").val()=="" && $(".date input:eq(1)").val()==""){ //날짜 선택 안 했을 시
+    				dateFlag = true;
+    			}
+    		});
+    		
+    		//가격, 인원엔 숫자만 입력 가능
+    		$(".price input").add($("[name=head]")).keyup(function(){
+    			let value = $(this).val();
+    			let regex = /[^0-9]/g;
+    			let onlyNumber = value.replace(regex, '');
+    			
+    			if (value != onlyNumber) {
+    		        $(this).val(onlyNumber);
+    		    }
+    		});
+    		
+    		//최저가격<최대가격 검증
+    		$(".price input").blur(function(){
+    			priceFlag = false;
+    			let priceLow = $("[name=priceLow]");
+				let priceHigh = $("[name=priceHigh]");
+				
+				if(priceLow.val() != "" && priceHigh.val() != "" && Number(priceLow.val()) > Number(priceHigh.val())){
+					/* alert('최대가격을 최저가격보다 높게 입력해야 합니다.'); */
+				} else {
+					priceFlag = true;
+				}
+    		});
+    		
+    		//날짜, 가격 앞뒤 맞을 때 form 제출
+    		$(".searchBtn").on("click", function(){
+    			if(priceFlag && dateFlag){
+    				$("form").submit();
+    			} else if (dateFlag==false){
+    				alert('체크인/체크아웃 날짜를 확인하세요.');
+    			} else if (priceFlag==false){
+    				alert('최대가격을 최저가격보다 높게 입력해야 합니다.');
+    			}
+    		});
+    	});/* document.ready 끝 */
+    
+    	let category = false;
+        function categorychangeFn(obj){
+            if(category == false){
+                $(obj).text("카테고리 접기");
+                category=true;
+            }else{
+                $(obj).text("카테고리 펼치기")
+                category=false;
+            }
+        }
+    </script>
+</head>
+
+<body>
+<section>
+<div class="main_search" style="position:relative;">
+    <div><img src="<c:url value="/resources/img/main.png" />" style="filter: brightness(0.5); width:100vw; height:500px; object-fit:cover;"></div><!--이미지-->
+
+    <div style="position:absolute; top:150px; width:100vw">
+        <div style="margin:0 auto; width:1024px; height:140px; background-color: white; border-radius:6px; "><!--내용물-->
+            <div style="height:10px;"></div><!--여백-->
+            
+            <h3 class="fw-bold mx-2 my-2">검색하기</h3><!--검색하기 시작-->
+            <form action="<c:url value="/search" />" method="get">
+            <div class="d-flex  justify-content-around" style="height:50px;">
+                <input name="text" type="text" class="form-control " placeholder="검색하기" style="width:350px; height:50px;">
+                <div class="d-flex align-items-center date">
+	                <input name="checkIn" type="date" class="form-control" placeholder="일정(부터)" style="width:150px; height:50px;">-
+	                <input name="checkOut" type="date" class="form-control" placeholder="일정(까지)" style="width:150px; height:50px;">
+                </div>
+                <input name="head" type="text" class="form-control " placeholder="인원(명)" style="width:100px; height:50px;">
+                <button class="btn btn-primary searchBtn" type="button" style="width:200px; height:50px;">검색하기</button>
+            </div><!--검색하기 끝-->
+
+            <div class="collapse" id="collapseExample" ><!--카테고리 열고 접기-->
+                <div class="d-flex align-items-center" style="height:150px;  background-color: white;"><!--카테고리 내용물 시작-->
+                    <div class="mx-2"><!--가격 카테고리 시작-->
+                        <h3 class="fw-bold my-3">가격</h3>
+                        <div class="d-flex align-items-center price">
+                            <input name="priceLow" type="text" class="form-control" placeholder="최저" style="width:150px;">-
+                            <input name="priceHigh" type="text" class="form-control" placeholder="최대" style="width:150px;">
+                        </div>
+                    </div><!--가격 카테고리 끝-->
+                    
+                    <div class="mx-2"><!--숙소이름 카테고리 시작-->
+                        <h3 class="fw-bold my-3">숙소유형</h3>
+                        <div class="d-flex">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="everything">
+                                <label class="form-check-label">전체</label>
+                            </div>
+
+                            <div class="form-check mx-2">
+                                <input name="type" class="form-check-input" type="checkbox" value="1" id="hotel">
+                                <label class="form-check-label">호텔</label>
+                            </div>
+
+                            <div class="form-check mx-2">
+                                <input name="type" class="form-check-input" type="checkbox" value="2" id="motel">
+                                <label class="form-check-label">모텔</label>
+                            </div>
+
+                            <div class="form-check mx-2">
+                                <input name="type" class="form-check-input" type="checkbox" value="3" id="resort">
+                                <label class="form-check-label">리조트</label>
+                            </div>
+
+                            <div class="form-check mx-2">
+                                <input name="type" class="form-check-input" type="checkbox" value="4" id="cottage">
+                                <label class="form-check-label">펜션</label>
+                            </div>
+                        </div>
+                    </div><!--숙소이름 카테고리끝-->
+                    
+                </div><!--카테고리 내용물 끝-->
+                </form>
+            </div><!--카테고리 열고 접기 끝-->
+
+            <div style="background-color: white; height:10px;"></div><!--카테고리 펼치기 시작-->
+            <div class="align-items-center" style="height:30px; background-color: white; border-bottom-left-radius:6px; border-bottom-right-radius:6px; ">
+                <p class="d-flex justify-content-center">
+                    <i class="bi bi-list"></i>
+                    <a style="color:black; text-decoration: none;" data-bs-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onclick="categorychangeFn(this)">카테고리 펼치기</a>
+                </p>
+            </div><!--카테고리 펼치기 끝-->
+            
+        </div>
+    </div>
+</div>
+
+</div>
+</section>
+</body>
+</html>
+<%@include file="../include/footer.jsp" %>
