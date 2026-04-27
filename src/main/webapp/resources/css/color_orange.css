@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+/* <link href="color_orange.css" rel="stylesheet" type="text/css"> */
+
+.btn-primary{
+    --bs-btn-bg:var(--bs-orange);
+    --bs-btn-border-color:var(--bs-orange);
+    --bs-btn-hover-bg:var(--bs-orange);
+    --bs-btn-hover-border-color:var(--bs-orange);
+    --bs-btn-active-bg:var(--bs-orange);
+    --bs-btn-active-border-color:var(--bs-orange);
+    --bs-btn-disabled-bg:var(--bs-orange);
+    --bs-btn-disabled-border-color:var(--bs-orange);
+}
+.pagination{
+    --bs-pagination-color:var(--bs-orange);
+    --bs-pagination-hover-color:var(--bs-orange);
+    --bs-pagination-focus-color:var(--bs-orange);
+    --bs-pagination-focus-box-shadow:0 0 0 0.25rem #FFC067;
+    --bs-pagination-active-bg:var(--bs-orange);
+    --bs-pagination-active-border-color:var(--bs-orange);
+}
+.accordion{
+    --bs-accordion-active-bg:#FFC067;
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem #FFC067;
+}
+.accordion-item{
+    border-color:black;
+}
+.accordion-button, .accordion-button:not(.collapsed){
+    color:black;
+    box-shadow:none;
+}
+.dropdown-menu{
+    --bs-dropdown-link-active-bg: var(--bs-orange);
+}
+.dropdown-item:hover {
+    background-color: #FFC067;
+}
+.form-control:focus{
+    border-color: #FFC067;
+    box-shadow: 0 0 0 0.25rem #FFC067;
+}
+
+.form-check-input:checked {
+    background-color: var(--bs-orange);
+    border-color: var(--bs-orange);
+}
+.form-check-input:focus {
+    border-color: var(--bs-orange);
+    box-shadow: 0 0 0 0.25rem #FFC067;
+}
+.form-select:focus{
+    border-color:#FFC067;
+    box-shadow:0 0 0  0.25rem #FFC067;
+}
