@@ -1,0 +1,217 @@
+package com.rent.vaca.acco;
+
+import java.util.List;
+
+import com.rent.vaca.review.ReviewPhotoVO;
+import com.rent.vaca.review.ReviewVO;
+import com.rent.vaca.room.RoomVO;
+import com.rent.vaca.user.BizVO;
+
+public class AccoVO {
+	private int accoNo;
+	private int type;
+	private String name;
+	private String addr;
+	private String phone;
+	private String description;
+	private String bizHour;
+	private String delyn;
+	private String checkin;
+	private String checkout;
+	private int bizId;
+	private Double starAvg;
+	private int price;
+	private String thumbnail;
+	
+	private BizVO biz;
+	private List<RoomVO> roomList;
+	private String orderBy;
+	private String orderQuery;
+	private List<AccoPhotoVO> photoList;
+
+	public int getAccoNo() {
+		return accoNo;
+	}
+
+	public void setAccoNo(int accoNo) {
+		this.accoNo = accoNo;
+	}
+
+	public String getTypeKo() {
+		String typeKo;
+		switch (this.type) {
+		case 1:
+			typeKo = "호텔";
+			break;
+		case 2:
+			typeKo = "모텔";
+			break;
+		case 3:
+			typeKo = "리조트";
+			break;
+		case 4:
+			typeKo = "펜션";
+			break;
+		default:
+			typeKo = "" + type;
+		}
+		return typeKo;
+	}
+
+	public int getType() {
+		return type;
+	}
+	
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public String getName() {
+		return name == null ? "" : name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddr() {
+		return addr == null ? "" : addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
+	public String getPhone() {
+		return phone == null ? "" : phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getDescription() {
+		return description == null ? "" : description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getBizHour() {
+		return bizHour == null ? "" : bizHour;
+	}
+
+	public void setBizHour(String bizHour) {
+		this.bizHour = bizHour;
+	}
+
+	public String getDelyn() {
+		return delyn;
+	}
+
+	public void setDelyn(String delyn) {
+		this.delyn = delyn;
+	}
+
+	public String getCheckin() {
+		if (checkin == null || checkin.length() < 5) {
+	        return "";
+	    }
+	    return checkin.substring(0, 5);
+	}
+
+	public void setCheckin(String checkin) {
+		this.checkin = checkin;
+	}
+
+	public String getCheckout() {
+		if (checkout == null || checkout.length() < 5) {
+	        return "";
+	    }
+	    return checkout.substring(0, 5);
+	}
+
+	public void setCheckout(String checkout) {
+		this.checkout = checkout;
+	}
+
+	public int getBizId() {
+		return bizId;
+	}
+
+	public void setBizId(int bizId) {
+		this.bizId = bizId;
+	}
+
+	public Double getStarAvg() {
+		return starAvg;
+	}
+
+	public void setStarAvg(Double starAvg) {
+		this.starAvg = starAvg;
+	}
+	
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+	public BizVO getBiz() {
+		return biz;
+	}
+
+	public void setBiz(BizVO biz) {
+		this.biz = biz;
+	}
+
+	public List<RoomVO> getRoomList() {
+		return roomList;
+	}
+
+	public void setRoomList(List<RoomVO> roomList) {
+		this.roomList = roomList;
+	}
+
+	public String getOrderBy() {
+		return orderBy;
+	}
+
+	public void setOrderBy(String orderBy) {
+		this.orderBy = orderBy;
+	}
+
+	public String getOrderQuery() {
+		return orderQuery;
+	}
+
+	public void setOrderQuery(String orderQuery) {
+		this.orderQuery = orderQuery;
+	}
+
+	public List<AccoPhotoVO> getPhotoList() {
+		return photoList;
+	}
+
+	public void setPhotoList(List<AccoPhotoVO> photoList) {
+		this.photoList = photoList;
+	}
+
+	@Override
+	public String toString() {
+		return "AccoVO [accoNo=" + accoNo + ", type=" + type + ", name=" + name + ", addr=" + addr + ", phone=" + phone
+				+ ", description=" + description + ", bizHour=" + bizHour + ", delyn=" + delyn + ", checkin=" + checkin
+				+ ", checkout=" + checkout + ", bizId=" + bizId + ", biz=" + biz + ", roomList=" + roomList + "]";
+	}
+}

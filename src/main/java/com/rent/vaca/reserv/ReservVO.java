@@ -1,0 +1,154 @@
+package com.rent.vaca.reserv;
+
+import com.rent.vaca.review.ReviewVO;
+
+public class ReservVO {
+	private String reservCode;
+	private int userId;
+	private int roomNo;
+	private String name;
+	private String phone;
+	private String email;
+	private String checkin;
+	private String checkout;
+	private String reservDate;
+	private String cancelyn;
+	private int payment;
+	private int adultNo;
+	private int childNo;
+	private ReviewVO review;
+	private String thumbnail;
+	private String accoName;
+	private String roomName;
+	
+	public String getRoomName() {
+		return roomName;
+	}
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
+	}
+	public String getReservCode() {
+		return reservCode;
+	}
+	public void setReservCode(String reservCode) {
+		this.reservCode = reservCode;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public int getRoomNo() {
+		return roomNo;
+	}
+	public void setRoomNo(int roomNo) {
+		this.roomNo = roomNo;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getCheckin() {
+		return checkin;
+	}
+	public void setCheckin(String checkin) {
+		this.checkin = checkin;
+	}
+	public String getCheckout() {
+		return checkout;
+	}
+	public void setCheckout(String checkout) {
+		this.checkout = checkout;
+	}
+	public String getReservDate() {
+		return reservDate;
+	}
+	public void setReservDate(String reservDate) {
+		this.reservDate = reservDate;
+	}
+	public String getCancelyn() {
+		return cancelyn;
+	}
+	public void setCancelyn(String cancelyn) {
+		this.cancelyn = cancelyn;
+	}
+	public int getPayment() {
+		return payment;
+	}
+	public void setPayment(int payment) {
+		this.payment = payment;
+	}
+	public int getAdultNo() {
+		return adultNo;
+	}
+	public void setAdultNo(int adultNo) {
+		this.adultNo = adultNo;
+	}
+	public int getChildNo() {
+		return childNo;
+	}
+	public void setChildNo(int childNo) {
+		this.childNo = childNo;
+	}
+	public ReviewVO getReview() {
+		return review;
+	}
+	public void setReview(ReviewVO review) {
+		this.review = review;
+	}
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+	
+	public String getAccoName() {
+		return accoName;
+	}
+	public void setAccoName(String accoName) {
+		this.accoName = accoName;
+	}
+	@Override
+	public String toString() {
+		return "ReservVO [reservCode=" + reservCode + ", userId=" + userId + ", roomNo=" + roomNo + ", name=" + name
+				+ ", phone=" + phone + ", email=" + email + ", checkin=" + checkin + ", checkout=" + checkout
+				+ ", reservDate=" + reservDate + ", cancelyn=" + cancelyn + ", payment=" + payment + ", adultNo="
+				+ adultNo + ", childNo=" + childNo + ", review=" + review + ", thumbnail=" + thumbnail + "]";
+	}
+	
+	public String getPaymentStr() {
+	    switch(this.payment) {
+	        case 0: return "계좌이체";
+	        case 1: return "카드결제";
+	        case 2: return "카카오페이";
+	        default: return "기타";
+	    }
+	}
+
+	public String getCancelStatus() {
+	    if ("N".equals(this.cancelyn)) {
+	        return "예약성공";
+	    } else if ("Y".equals(this.cancelyn)) {
+	        return "예약취소";
+	    } else {
+	        return "알수없음";
+	    }
+	}
+	
+}
