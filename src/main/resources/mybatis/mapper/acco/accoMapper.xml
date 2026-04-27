@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mybatis mapper파일 -->
+	<!-- namespace, id, resultType 3가지가 중요 -->
+
+<mapper namespace="accoMapper">
+<!-- namespace는 매퍼를 식별하기 위한 고유한 값 -->
+	<resultMap id="accoRoomMap" type="acco">
+		<id property="accoNo" column="acco_no" />
+		<result property="type" column="type" />
+		<result property="name" column="name" />
+		<result property="addr" column="addr" />
+		<result property="phone" column="phone" />
+		<result property="description" column="description" />
+		<result property="bizHour" column="biz_hour" />
+		<result property="delyn" column="delyn" />
+		<result property="checkin" column="checkin" />
+		<result property="checkout" column="checkout" />
+		<result property="bizId" column="biz_id" />
+		
+		<!-- 1:1 테이블 관계 매핑 -->
+		<association property="biz" javaType="biz">
+			<id property="id" column="id" />
+			<result property="email" column="email" />
+			<result property="pw" column="pw" />
+			<result property="phone" column="phone" />
+			<result property="wdate" column="wdate" />
+			<result property="approveyn" column="approveyn" />
+			<result property="delyn" column="delyn" />
+			<result property="name" column="name" />
+			<result property="owner" column="owner" />
+			<result property="certificateNo" column="certificate_no" />
+			<result property="certificateOriginalName" column="certificate_original_name" />
+			<result property="certificateSavedName" column="certificate_saved_name" />
+			<result property="banyn" column="banyn" />
+			<result property="banReason" column="ban_reason" />
+		</association>
+		
+		<!-- 1:n 테이블 관계 매핑 -->
+		<collection property="roomList" ofType="room">
+			<id property="roomNo" column="room_no" />
+			<result property="accoNo" column="acco_no" />
+			<result property="ho" column="ho" />
+			<result property="name" column="rname" />
+			<result property="price" column="price" />
+			<result property="area" column="area" />
+			<result property="bedType" column="bed_type" />
+			<result property="restroomNo" column="restroom_no" />
+			<result property="delyn" column="delyn" />
+			<result property="standardHead" column="standard_head" />
+			<result property="extraHead" column="extra_head" />
+			<result property="description" column="r_description" />
+			<result property="thumbnailImage" column="thumbnail_image" />
+		</collection>
+		
+		<!-- 1:n 테이블 관계 매핑 -->
+		<collection property="photoList" ofType="com.rent.vaca.acco.AccoPhotoVO">
+			<id property="photoNo" column="photo_no" />
+			<result property="accoNo" column="acco_no" />
+			<result property="savedName" column="saved_name" />
+			<result property="originalName" column="original_name" />
+			<result property="roomNo" column="room_no" />
+		</collection>
+	</resultMap>
+	
+	<!-- 숙소 사진 등록 -->
+	<insert id="insertAccoPhoto" parameterType="accoPhoto" useGeneratedKeys="true" keyProperty="accoNo">
+	    insert into acco_phototb (original_name, saved_name, acco_no, room_no)
+	    values (#{originalName}, #{savedName}, #{accoNo} , 0)
+	</insert>
+	
+	<!-- 숙소 등록 -->
+	<insert id="insertAccoOne" parameterType="acco" useGeneratedKeys="true" keyProperty="accoNo">
+		insert into accotb(type, name, addr, phone, description, biz_hour, checkin, checkout, biz_id)
+		values(#{type}, #{name}, #{addr}, #{phone}, #{description}, #{bizHour}, #{checkin}, #{checkout}, #{bizId})
+	</insert>
+
+	<!-- 사업자 숙소 1건 조회 -->
+	<select id="selectBizAccoOne" parameterType="int" resultType="acco">
+		select * from accotb
+			where biz_id = #{bizId} and delyn = 'N' limit 1
+	</select>
+	
+	<!-- 숙소 삭제 여부 조회 -->
+	<select id="existsAccoByBizIdAndDelyn" parameterType="map" resultType="int">
+		select count(*) from accotb where biz_id = #{bizId} and delyn = #{delyn}
+	</select>
+	
+	<!-- 등록한 숙소 삭제 -->
+	<update id="deleteAccoDelyn" parameterType="int">
+		update accotb set delyn = 'Y' where acco_no = #{accoNo}
+	</update>
+	
+	<!-- 객실 삭제 시 해당 객실 예약 여부 조회 -->
+	<select id="reservAccoCount" parameterType="int" resultType="int">
+		select count(*) from roomtb r where r.acco_no = #{accoNo}
+		and r.room_no in(select room_no from reservtb
+		where checkin >= curdate())
+	</select>
+	
+	<!-- 숙소 수정 -->
+	<update id = "updateAccoInfo" parameterType="acco">
+		update accotb set 
+			type = #{type}, name = #{name}, addr = #{addr},
+			phone = #{phone}, description = #{description}, biz_hour = #{bizHour},
+			checkin = #{checkin}, checkout = #{checkout}
+		where acco_no = #{accoNo} and delyn = 'N'
+	</update>
+	
+	<!-- 숙소1건 조회 -->
+	<select id="selectAccoByAccoNo" parameterType="int" resultMap="accoRoomMap">
+		select 
+			a.*, 
+			b.*, 
+			r.room_no, 
+			r.name as rname,
+			r.price,
+			r.area,
+			r.bed_type,
+			r.restroom_no, 
+			r.standard_head, 
+			r.extra_head, 
+			r.description as r_description, 
+			(select original_name from acco_phototb p where p.room_no = r.room_no limit 0,1) as thumbnail_image 
+		from accotb a 
+			inner join biztb b 
+				on a.biz_id=b.id and a.delyn='N' 
+			inner join roomtb r 
+				on a.acco_no=r.acco_no and r.delyn='N' 
+		where a.acco_no=#{accoNo};
+	</select>
+	
+	<!-- 메인페이지에서 숙소 검색 -->
+ 	<select id="search" parameterType="com.rent.vaca.search.SearchVO" resultType="acco">
+		select 
+			a.acco_no,
+			a.name, 
+			a.type, 
+			min(r.price) as price,
+			(select 
+				avg(reviewtb.star) 
+			from reviewtb 
+				inner join reservtb
+					on reviewtb.reserv_code = reservtb.reserv_code
+				left join roomtb
+					on reservtb.room_no = roomtb.room_no
+			where roomtb.acco_no = a.acco_no 
+			) as starAvg,
+			(SELECT original_name FROM acco_phototb WHERE acco_no = a.acco_no ORDER BY acco_phototb.room_no LIMIT 1) AS thumbnail  
+		from accotb a 
+		inner join roomtb r 
+			on a.acco_no=r.acco_no 
+		left join reservtb 
+			on r.room_no = reservtb.room_no 
+		left join reviewtb
+			on reservtb.reserv_code=reviewtb.reserv_code 
+		<where>
+			a.delyn='N' 
+			<if test='text != null and text != ""'>
+				and a.name like concat('%', #{text}, '%')
+			</if>
+			<if test='checkIn != "" and checkOut != ""'>
+			<![CDATA[
+				and r.room_no not in 
+					(select 
+						room_no 
+					from reservtb 
+					where checkin between #{checkIn} and #{checkOut} 
+						or (checkout > #{checkIn} and checkout <= #{checkOut})
+					)
+					or r.room_no is null
+			]]>
+			</if>
+			<if test='head != null and head != ""'>
+				and (r.standard_head + r.extra_head) &gt;=#{head}
+			</if>
+			<if test='priceLow != null and priceLow != ""'>
+				and r.price &gt;= #{priceLow}
+			</if>
+			<if test='priceHigh != null and priceHigh != ""'>
+				and r.price &lt;= #{priceHigh}
+			</if>
+			<if test='type != null'>
+				and a.type in(
+ 				<foreach item="t" collection="type" separator=",">
+ 					#{t}
+ 				</foreach>
+				)
+			</if>
+		</where>
+		group by a.acco_no, a.name, a.type, thumbnail 
+		order by ${orderQuery};
+	</select>
+</mapper>
