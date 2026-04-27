@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- mybatis mapper파일 -->
+
+<mapper namespace="bizMapper">
+
+<resultMap id="bizResultMap" type="biz">
+	<id property="id" column="id"/>
+	<result property="email" column="email"/>
+	<result property="pw" column="pw"/>
+	<result property="phone" column="phone"/>
+	<result property="wdate" column="wdate"/>
+	<result property="approveyn" column="approveyn"/>
+	<result property="delyn" column="delyn"/>
+	<result property="name" column="name"/>
+	<result property="owner" column="owner"/>
+	<result property="certificateNo" column="certificate_no"/>
+	<result property="certificateSavedName" column="certificate_saved_name"/>
+	<result property="banyn" column="banyn"/>
+	<result property="banReason" column="ban_reason"/>
+</resultMap>
+
+	<!-- 회원가입 -->
+	<insert id="insertBizOne" parameterType="biz"
+	useGeneratedKeys="true" keyProperty="id">
+		insert into biztb(email, pw, phone, name, owner,
+		certificate_no, certificate_original_name, certificate_saved_name)
+		values(#{email}, #{pw}, #{phone}, #{name}, #{owner},
+		#{certificateNo}, #{certificateOriginalName},
+		#{certificateSavedName})
+	</insert>
+	
+	<!-- 약관동의 항목 저장 -->
+	<insert id="bizTermSave" parameterType="bizTerm">
+		insert into biz_termstb
+		(biz_id, term_id, agreed, agreed_at, created_at, updated_at)
+		values
+		(#{bizId}, #{termId}, #{agreed}, now(), now(), now())
+	</insert>
+		
+	<!-- 로그인 -->
+	<select id="selectBizOne" parameterType="biz" resultMap="bizResultMap">
+		select * from biztb where email = #{email}
+	</select>
+	
+	<!-- 이메일 찾기 -->
+	<select id="selectEmailFind" resultType="String">
+		select email from biztb where
+		 name = #{name} and phone = #{phone} and certificate_no = #{certificateNo}
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="selectPasswordFind" parameterType="map" resultType="int">
+		select count(*) from biztb
+		where
+			email = #{email} and
+			name = #{name} and 
+			phone = #{phone} and
+			certificate_no = #{certificateNo} 
+	</select>
+	
+	<!-- 랜덤 비밀번호 생성 후 업데이트 -->
+	<update id="passwordRandom" parameterType="map">
+		update biztb set pw = #{pw} where email = #{email}
+	</update>
+	
+	<!-- 비밀번호 변경 시 email 확인 -->
+	<select id="selectBizByEmail" parameterType="String" resultType="biz">
+		select * from biztb where email = #{email}
+	</select>
+	
+	<update id="bizPwChange" parameterType="map">
+		update biztb set pw = #{pw} where email = #{email}
+	</update>
+	
+	<!-- 사업자 정보 수정 -->
+	<update id="updateBizInfo" parameterType="biz">
+		update biztb set owner = #{owner}, name = #{name},
+        phone = #{phone}, certificate_no = #{certificateNo},
+        certificate_saved_name = #{certificateSavedName},
+        certificate_original_name = #{certificateOriginalName}
+    where id = #{id}
+	</update>
+	
+	<!-- 사업자등록증 사진 삭제 -->
+	<update id="updateCertificateDeleted" parameterType="int">
+		update biztb set certificate_saved_name = null,
+		certificate_original_name = null where id = #{id}
+	</update>
+	
+	<select id="selectBizCntByEmail" resultType="int" parameterType="string">
+		select count(*) from biztb where email = #{email}
+	</select>
+	
+	<select id="selectReservList" resultType="reserv">
+		select r.room_no as roomNo,
+			rt.name as roomName,
+			r.name, r.email, r.checkin, r.checkout, r.phone,
+			case r.cancelyn
+				when 'N' then '예약성공'
+				when 'Y' then '예약취소'
+				else '알 수 없음'
+			end as cancelyn,
+			r.payment,
+			r.adult_no as adultNo,
+			r.child_no as childNo
+		from reservtb r
+		join roomtb rt on r.room_no = rt.room_no
+		join accotb a on rt.acco_no = a.acco_no
+		where a.biz_id = #{bizId}
+			and r.checkin <![CDATA[ >= ]]> #{startDate}
+			and r.checkout <![CDATA[ <= ]]> #{endDate}
+		order by r.checkin asc
+	</select>
+	
+</mapper>

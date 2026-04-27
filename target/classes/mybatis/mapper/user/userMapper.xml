@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- mybatis mapper파일 -->
+
+<mapper namespace="userMapper">
+
+<resultMap id="userResultMap" type="user">
+	<id property="id" column="id"/>
+	<result property="name" column="name"/>
+	<result property="nickname" column="nickname"/>
+	<result property="pw" column="pw"/>
+	<result property="wdate" column="wdate"/>
+	<result property="email" column="email"/>
+	<result property="phone" column="phone"/>
+	<result property="grade" column="grade"/>
+	<result property="social" column="social"/>
+	<result property="delyn" column="delyn"/>
+	<result property="banyn" column="banyn"/>
+	<result property="banReason" column="ban_reason"/>
+	<result property="accesstoken" column="accesstoken"/>
+</resultMap>
+
+	<!-- 일반유저 회원가입 -->
+	<insert id="join" parameterType="user"
+	useGeneratedKeys="true" keyProperty="id">
+		insert into usertb(id, name, nickname, pw, wdate, email,
+		phone, grade, social, delyn, banyn, ban_reason)
+ 		values(null , #{name}, #{nickname}, #{pw}, NOW(), #{email},
+ 		#{phone}, "U", "N" , "N", "N", "");
+	</insert>
+	
+	<!-- 약관동의 항목 저장 -->
+	<insert id="userTermSave" parameterType="userTerm">
+		insert into user_termstb
+		(user_id, term_id, agreed, agreed_at, created_at, updated_at)
+		values
+		(#{userId}, #{termId}, #{agreed}, now(), now(), now())
+	</insert>
+	
+	<!-- 이메일 중복검사 -->
+	<select id="emailCheck" parameterType="String" resultType="int">
+		select count(email) from usertb where email = #{email}
+		<!-- 0이면사용가능 1이면 불가능 -->
+	</select>
+	
+	<!-- 전화번호 중복검사 -->
+	<select id="phoneCheck" parameterType="String" resultType="int">
+		select count(phone) from usertb where phone = #{phone}
+		<!-- 0이면사용가능 1이면 불가능 -->
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="login" parameterType="user" resultMap="userResultMap">
+		select * from usertb where email = #{email}
+	</select>
+	
+	<!-- 비밀번호 변경 시 email 확인 -->
+	<select id="selectUserByEmail" parameterType="String" resultType="user">
+		select * from usertb where email = #{email}
+	</select>
+	
+	<!-- 이메일찾기 -->
+	<select id="findEmail" parameterType="String" resultType="user">
+		select * from usertb where name = #{name} and phone = #{phone}
+	</select>
+	
+	<!--비밀번호 자동생성-->
+	<update id="pwauto" parameterType="map">
+		update usertb set pw = #{pw} where email = #{email}
+	</update>
+	
+	<!--비밀번호찾기-->
+	<select id="findPw" parameterType="map" resultType="int">
+  		select count(*) from usertb where email = #{email} and name = #{name} and phone = #{phone}
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="userPwChange" parameterType="map">
+		update usertb set pw = #{pw}
+	</update>
+	
+	<select id="selectUserOne" parameterType="user" resultType="user">
+		select * from usertb where email = #{email}
+	</select>
+	
+	<select id="kakaoLogin" parameterType="user" resultType="user">
+			select * from usertb where social_id = #{socialId}
+	</select>
+	
+	<insert id="kakaoJoin" parameterType="user">
+		insert into usertb
+			(name, nickname, pw, wdate, email, social_type,
+			phone, grade, social, delyn, ban_reason, social_id)
+		values
+			(#{nickname}, #{nickname}, SUBSTRING(MD5(RAND()), 1, 5), now(),
+			#{email}, 'kakao', LPAD(FLOOR(RAND() * 100000000000), 11, '0'),
+			'U', #{social}, 'N', '', #{socialId})
+	</insert>
+	
+	<select id="naverLogin" parameterType="user" resultType="user">
+			select * from usertb where social_id = #{socialId}
+	</select>
+	
+	<insert id="naverJoin" parameterType="user">
+			insert into usertb
+			(name, nickname, pw, wdate, email, social_type,
+			phone, grade, social, delyn, ban_reason, social_id)
+		values
+			(#{name}, #{nickname}, SUBSTRING(MD5(RAND()), 1, 5), now(),
+			#{email}, 'naver', LPAD(FLOOR(RAND() * 100000000000), 11, '0'),
+			'U', #{social}, 'N', '', #{socialId})
+	</insert>
+	
+	<select id="getPostsByUserId" parameterType="Int" resultType="notice">
+		select notice_no, title, content, wdate, answeryn
+		from noticetb where user_id = #{userId} and delyn = "n"
+	</select>
+	
+	<select id="getReservByUserId" parameterType="Int" resultType="map">
+		select 
+        r.reserv_code as reservCode,
+        r.user_id as userId,
+        r.name,
+        r.phone,
+        r.email,
+        r.checkin,
+        r.checkout,
+        r.reserv_date as reservDate,
+        case r.payment
+        	when 0 then '계좌이체'
+        	when 1 then '카드결제'
+        	when 2 then '카카오페이'
+        	else '기타'
+        end as payment,
+        r.cancelyn,
+        r.adult_no as adultNo,
+        r.child_no as childNo,
+        rm.name as roomName,
+        u.name as userName
+    from reservtb r
+    join usertb u on r.user_id = u.id
+    join roomtb rm on r.room_no = rm.room_no
+    where r.user_id = #{userId}
+	</select>
+	
+	<update id="useraccount" parameterType="String">
+		update usertb set pw = ${pw} pw = ${pw} pw = ${pw}where email=#{email} and name = #{name} and phone = #{phone}
+	</update>
+	
+	<!-- 개인정보 변경 -->
+	<update id="useraccountchange" parameterType="user">
+		update usertb set nickname = #{nickname} , phone = #{phone} where id = #{id}
+	</update>
+	
+	<update id="useraccountsocial" parameterType="String">
+		update usertb set pw = SUBSTRING(MD5(RAND()), 1, 16) where email=#{email} and name = #{name} and phone = #{phone}
+	</update>
+	
+	<!-- 예약 취소 -->
+	<update id="cancelReserv" parameterType="String">
+		update reservtb set cancelyn = 'Y'
+			where reserv_code = ${reservCode}
+	</update>
+	
+	<!-- 전체 회원 리스트 조회 -->
+	<select id="selectMemberList" resultType="com.rent.vaca.user.Member">
+		select
+		id, email, phone, delyn, name, banyn, ban_reason, 'USER' as memberType
+		from usertb union all
+		select
+		id, email, phone, delyn, name, banyn, ban_reason, 'BIZ' as memberType
+		from biztb
+	</select>
+	
+	<!-- 회원 타입 구분을 위한 전체 조회 -->
+	<select id="selectMemberById" resultType="com.rent.vaca.user.Member">
+		select * from(
+			select
+			id, email, phone, delyn, name, banyn, ban_reason, 'USER' as memberType
+			from usertb union all
+			select
+			id, email, phone, delyn, name, banyn, ban_reason, 'BIZ' as memberType
+			from biztb
+		) t
+		where id = #{memberId} and memberType = #{memberType}
+	</select>
+
+	<!-- 일반회원 차단 -->
+	<update id="updateUserBanyn" parameterType="map">
+		update usertb set
+			banyn = #{banyn},
+			ban_reason = #{banReason}
+		where id = #{memberId}
+	</update>
+	
+	<!-- 비즈니시회원 차단 -->
+	<update id="updateBizBanyn" parameterType="map">
+		update biztb set
+			banyn = #{banyn},
+			ban_reason = #{banReason}
+		where id = #{memberId}
+	</update>
+	
+	<!-- 비즈니스회원 차단 시 숙소 비활성화 -->
+	<update id="updateAccoDelyn">
+		update accotb set delyn = #{delyn} where biz_id = #{memberId}
+	</update>
+
+</mapper>

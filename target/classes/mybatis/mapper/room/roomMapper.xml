@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mybatis mapper파일 -->
+	<!-- namespace, id, resultType 3가지가 중요 -->
+
+<mapper namespace="roomMapper">
+<!-- namespace는 매퍼를 식별하기 위한 고유한 값 -->
+	<resultMap id="roomReservRoomMap" type="room">
+		<id property="roomNo" column="room_no" />
+		<result property="accoNo" column="acco_no" />
+		<result property="ho" column="ho" />
+		<result property="name" column="name" />
+		<result property="price" column="price" />
+		<result property="area" column="area" />
+		<result property="bedType" column="bed_type" />
+		<result property="restroomNo" column="restroom_no" />
+		<result property="delyn" column="delyn" />
+		<result property="standardHead" column="standard_head" />
+		<result property="extraHead" column="extra_head" />
+		<result property="description" column="description" />
+
+		<!-- 1:n 테이블 관계 매핑 -->
+		<collection property="reservList" ofType="com.rent.vaca.reserv.ReservVO">
+			<id property="reservCode" column="reserv_code" />
+			<result property="userId" column="user_id" />
+			<result property="roomNo" column="room_no" />
+			<result property="name" column="name" />
+			<result property="phone" column="phone" />
+			<result property="email" column="email" />
+			<result property="checkin" column="checkin" />
+			<result property="checkout" column="checkout" />
+			<result property="reservDate" column="reserv_date" />
+			<result property="cancelyn" column="cancelyn" />
+			<result property="payment" column="payment" />
+			<result property="adultNo" column="adult_no" />
+			<result property="childNo" column="child_no" />
+		</collection>
+	</resultMap>
+	
+	<resultMap id="accoPhotoMap" type="accoPhoto">
+	    <id property="photoNo" column="photo_no" />
+	    <result property="savedName" column="saved_name" />
+	    <result property="originalName" column="original_name" />
+	</resultMap>
+	
+	<!-- 객실 사진 등록 -->
+	<insert id="insertRoomPhoto" parameterType="accoPhoto">
+	    insert into acco_phototb (original_name, saved_name, acco_no, room_no)
+	    values (#{originalName}, #{savedName}, #{accoNo}, #{roomNo})
+	</insert>
+	
+	<!-- 객실 1건 등록 -->
+	<insert id="insertRoomOne" parameterType="Room" useGeneratedKeys="true" keyProperty="roomNo">
+		insert into roomtb (ho, name, price, area, bed_type, restroom_no, standard_head, extra_head, description, acco_no)
+    	values (#{ho}, #{name}, #{price}, #{area}, #{bedType}, #{restroomNo}, #{standardHead}, #{extraHead}, #{description}, #{accoNo})
+	</insert>
+	
+	<!-- 숙소내 객실 전체 조회 -->
+	<select id="selectRoomsByAccoNo" parameterType="int" resultType="room">
+		select * from roomtb
+			where acco_no = #{accoNo} and delyn = 'N'
+	</select>
+	
+	<!-- 객실 1건 조회 -->
+	<select id="selectAccoRoomOne" parameterType="int" resultType="room">
+		select * from roomtb
+			where delyn = 'N' and room_no = #{roomNo}
+	</select>
+	
+	<!-- 객실 1건 삭제 -->
+	<update id="updateRoomDelYn" parameterType="room">
+		update roomtb set delyn = 'Y' where delyn = 'N' and room_no = #{roomNo}	
+	</update>
+	
+	<!-- 객실 삭제 시 해당 객실 예약 여부 조회 -->
+	<select id="reservRoomCount" parameterType="int" resultType="int">
+		select count(*) from reservtb where room_no = #{roomNo}
+		and checkin >= curdate()
+	</select>
+	
+</mapper>
