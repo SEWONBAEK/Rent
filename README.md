@@ -217,43 +217,40 @@ Naver 및 Kakao OAuth 2.0을 연동하여 로그인 편의성을 높였고, Kaka
         </td>
         <td align="center" width="200">
             <h5>개인 정보 수정</h5>
-            <img src="./images/user.png" alt="관리자 공지사항 수정" width="200" />  
+            <img src="./images/user_info_edit.png" alt="일반 회원 개인 정보 수정" width="200" />  
         </td>
         <td align="center" width="200">
-            <h5>공지사항 상세</h5>
-            <img src="./images/admin_notice_view.png" alt="관리자 공지사항 상세" width="200" />  
+            <h5>문의 내역</h5>
+            <img src="./images/user_question_list.png" alt="일반 회원 문의 내역" width="200" />  
         </td>
         <td align="center" width="200">
-            <h5>교수관리</h5>
-            <img src="./images/admin_teacher_management.png" alt="관리자 교수관리" width="200" />  
+            <h5>예약 내역</h5>
+            <img src="./images/user_reserv_list.png" alt="일반 회원 예약 내역" width="200" />  
         </td>
         <td align="center" width="200">
-            <h5>학생관리</h5>
-            <img src="./images/admin_student_management.png" alt="관리자 학생관리" width="200" />  
+            <h5>숙소 결제</h5>
+            <img src="./images/user_payment.png" alt="일반 회원 숙소 결제" width="200" />  
         </td>
     </tr>
     <tr>
       <td align="center">
-        <div>✔ 관리자 로그인 시 초기 페이지입니다.</div>
-        <div>✔ 공지사항 목록을 보여주는 페이지입니다.</div>
+        <div>✔ 회원가입 페이지입니다.</div>
+        <div>✔ 약관동의 체크 사항은 DB에 저장됩니다.</div>
       </td>
       <td align="center">
-        <div>✔ 공지사항을 작성하는 페이지입니다.</div>
-        <div>✔ 첨부파일은 단건으로 업로드 가능합니다.</div>
+        <div>✔ </div>
       </td>
       <td align="center">
-        <div>✔ 공지사항을 수정하는 페이지입니다.</div>
+        <div>✔ </div>
       </td>
       <td align="center">
-        <div>✔ 공지사항 상세 페이지입니다.</div>
+        <div>✔ </div>
       </td>
       <td align="center">
-        <div>✔ 관리자가 교수의 재적관리 가능한 페이지입니다.</div>
-        <div>✔ 휴직 또는 퇴직인 교수는 교수 기능이 제한됩니다.</div>
+        <div>✔ </div>
       </td>
       <td align="center">
-        <div>✔ 관리자가 학생의 재적관리 가능한 페이지입니다.</div>
-        <div>✔ 휴학 또는 퇴학 등인 학생은 학생 기능이 제한됩니다.</div>
+        <div>✔ </div>
       </td>
     </tr>
 </table>
