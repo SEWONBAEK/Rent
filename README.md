@@ -98,8 +98,8 @@
 
 <img src="./images/Rent_System Architecture.png">
 
-- Frontend: HTML5, CSS3, JavaScript를 활용하여 깔끔하고 가독성 좋은 UI와 Ajax를 이용한 비동기 통신 환경을 구축 
-- Backend & DB: Spring 프레임워크를 사용하여 서버를 구현하였으며, MySQL을 통해 교수, 학생 데이터를 관리
+- Frontend: HTML5, CSS3, JavaScript를 활용하여 깔끔하고 가독성 좋은 UI를 구축 
+- Backend & DB: Spring 프레임워크를 사용하여 서버를 구현하였으며, MySQL을 통해 사용자, 숙소 정보 등 데이터를 관리
 
 본 프로젝트는 Spring MVC 아키텍처를 기반으로 설계된 숙소 예약 플랫폼입니다.<br />
 Ajax를 활용한 비동기 통신 구조를 채택하여 화면 전환 없는 매끄러운 사용자 경험을 제공하며,<br />
