@@ -238,19 +238,25 @@ Naver 및 Kakao OAuth 2.0을 연동하여 로그인 편의성을 높였고, Kaka
         <div>✔ 약관동의 체크 사항은 DB에 저장됩니다.</div>
       </td>
       <td align="center">
-        <div>✔ </div>
+        <div>✔ 회원가입한 정보 또는 소셜 로그인으로 로그인합니다.</div>
       </td>
       <td align="center">
-        <div>✔ </div>
+        <div>✔ 닉네임, 휴대폰 번호, 비밀번호를 수정할 수 있습니다.</div>
       </td>
       <td align="center">
-        <div>✔ </div>
+        <div>✔ 내가 문의한 문의 내역 목록을 보여줍니다.</div>
+        <div>✔ 문의 내역 제목을 클릭하여 답변 내역을 확인 가능합니다.</div>
       </td>
       <td align="center">
-        <div>✔ </div>
+        <div>✔ 예약 내역의 상세정보를 보여줍니다.</div>
+        <div>✔ 예약한 숙소를 취소할 수 있습니다.</div>
       </td>
       <td align="center">
-        <div>✔ </div>
+        <div>✔ 숙소 예약 페이지 및 결제 완료 및 실패입니다.</div>
+        <div>✔ 예약자 정보 및 예약날짜 선택 후 결제정보를 선택하여 예약합니다.</div>
+        <div>✔ 계좌이체와 카드결제는 사업자정보가 있어야 해서 결제 완료로 바로 이동합니다.</div>
+        <div>✔ 카카오페이 결제 시 카카오페이 결제 페이지로 이동합니다.</div>
+        <div>✔ 카카오페이 결제도 관리자 키를 이용하여 테스트 결제로 구현하였습니다.</div>
       </td>
     </tr>
 </table>
