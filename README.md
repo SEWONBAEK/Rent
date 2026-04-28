@@ -252,9 +252,9 @@ Naver 및 Kakao OAuth 2.0을 연동하여 로그인 편의성을 높였고, Kaka
 </table>
 <table>
     <tr>
-        <td align="center" width="600">
+        <td align="center" width="1000">
             <h5>숙소 결제</h5>
-            <img src="./images/user_payment.png" alt="일반 회원 숙소 결제" width="600" />  
+            <img src="./images/user_payment.png" alt="일반 회원 숙소 결제" width="1000" />  
         </td>
     </tr>
     <tr>
