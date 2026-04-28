@@ -203,21 +203,21 @@ Naver 및 Kakao OAuth 2.0을 연동하여 로그인 편의성을 높였고, Kaka
     </tr>
 </table>
 
-### 2. 관리자
+### 2. 일반 회원
 
 <table>
     <tr>
         <td align="center" width="200">
-            <h5>공지사항 목록</h5>
-            <img src="./images/admin_notice_list.png" alt="관리자 공지사항 목록" width="200" />  
+            <h5>회원가입</h5>
+            <img src="./images/user_sign_up.png" alt="일반 회원 회원가입" width="200" />  
         </td>
         <td align="center" width="200">
-            <h5>공지사항 작성</h5>
-            <img src="./images/admin_notice_write.png" alt="관리자 공지사항 작성" width="200" />  
+            <h5>로그인</h5>
+            <img src="./images/user_login.png" alt="일반 회원 로그인" width="200" />  
         </td>
         <td align="center" width="200">
-            <h5>공지사항 수정</h5>
-            <img src="./images/admin_notice_edit.png" alt="관리자 공지사항 수정" width="200" />  
+            <h5>개인 정보 수정</h5>
+            <img src="./images/user.png" alt="관리자 공지사항 수정" width="200" />  
         </td>
         <td align="center" width="200">
             <h5>공지사항 상세</h5>
