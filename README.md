@@ -162,51 +162,43 @@ Naver 및 Kakao OAuth 2.0을 연동하여 로그인 편의성을 높였고, Kaka
 <table>
     <tr>
         <td align="center" width="200">
-            <h5>로그인 페이지</h5>
-            <img src="./images/common_login.png" alt="로그인" width="100%" />  
+            <h5>메인 페이지</h5>
+            <img src="./images/main.png" alt="메인 페이지" width="100%" />  
         </td>
         <td align="center" width="200">
-            <h5>학생 회원가입 모달</h5>
-            <img src="./images/common_sign_up_student.png" alt="학생 회원가입" width="100%" />  
+            <h5>숙소 검색</h5>
+            <img src="./images/search_acco.png" alt="숙소 검색" width="100%" />
+        </td>
+        <td align="center" width="200">
+            <h5>숙소 정보</h5>
+            <img src="./images/acco_info.png" alt="숙소 정보" width="100%" />  
         </td> 
         <td align="center" width="200">
-            <h5>교수 회원가입 모달</h5>
-            <img src="./images/common_sign_up_teacher.png" alt="메인하단" width="100%" />
+            <h5>이메일 찾기</h5>
+            <img src="./images/email_find.png" alt="이메일 찾기" width="100%" />
         </td>
         <td align="center" width="200">
-            <h5>개인정보변경</h5>
-            <img src="./images/common_info_edit.png" alt="개인정보변경" width="100%" />
-        </td>
-        <td align="center" width="200">
-            <h5>아이디 찾기 완료</h5>
-            <img src="./images/common_id_find_ok.png" alt="아이디 찾기 완료" width="100%" />
-        </td>
-        <td align="center" width="200">
-            <h5>비밀번호 재설정</h5>
-            <img src="./images/common_password_edit.png" alt="비밀번호 재설정" width="100%" />
+            <h5>비밀번호 찾기</h5>
+            <img src="./images/password_find.png" alt="비밀번호 찾기" width="100%" />
         </td>
     </tr>
     <tr>
       <td align="center">
-        <div>✔ 회원가입한 이메일과 비밀번호 입력 후 로그인</div>
-        <div>✔ 프론트엔드, 백엔드 유효성 검사</div>
+        <div>✔ 메인 페이지로 중앙 카테고리 펼치기를 통해 상세 검색이 가능합니다.</div>
       </td>
       <td align="center">
-        <div>✔ 학생 회원가입 모달창</div>
-        <div>✔ 이메일 중복 검사 등 회원가입에 필요한 유효성 검사</div>
+        <div>✔ 숙소 검색 시 검색된 숙소를 표시해줍니다.</div>
+        <div>✔ 좌측 상세 키워드 검색으로 더 상세하게 숙소를 검색할 수 있습니다.</div>
       </td>
       <td align="center">
-        <div>✔ 교수 회원가입 모달창</div>
-        <div>✔ DB 유저타입을 학생과 구분되어 가입</div>
+        <div>✔ 숙소의 상세 정보 페이지입니다.</div>
+        <div>✔ 결제하기 클릭 시 선택한 방의 결제창으로 이동합니다.</div>
       </td>
       <td align="center">
-        <div>✔ 비밀번호 변경 및 휴대폰 변경 가능(선택사항)</div>
+        <div>✔ 가입한 정보 입력 후 정보가 맞다면 이메일을 보여줍니다.</div>
       </td>
       <td align="center">
-        <div>✔ 아이디 찾기에 필요한 정보를 입력 후 정보에 해당되는 이메일이 있으면 표시</div>
-      </td>
-      <td align="center">
-        <div>✔ 비밀번호 찾기에 필요한 정보 입력 후 정보에 해당되는 유저가 있으면 비밀번호 재설정 가능</div>
+        <div>✔ 가입한 정보 입력 후 정보가 맞다면 가입한 이메일로 임시비밀번호를 발송합니다.</div>
       </td>
     </tr>
 </table>
