@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./images/eLMS_Thumbnail.png" width="80%">
+  <img src="./images/Rent_Thumbnail.png" width="80%">
   <h3비대면 과제관리 시스템</h3>
 </div>
 
