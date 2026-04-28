@@ -267,221 +267,50 @@ Naver 및 Kakao OAuth 2.0을 연동하여 로그인 편의성을 높였고, Kaka
     </tr>
 </table>
 
-### 3. 교수
+### 3. 기업 회원
 
 <table>
     <tr>
         <td align="center" width="200">
-            <h5>메인 페이지</h5>
-            <img src="./images/teacher_subject_management.png" alt="" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>과목 등록 모달</h5>
-            <img src="./images/teacher_subject_add.png" alt="" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>과목 수정 모달</h5>
-            <img src="./images/teacher_subject_edit.png" alt="" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>과제 게시판 목록</h5>
-            <img src="./images/teacher_submission_list.png" alt="" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>과제 등록</h5>
-            <img src="./images/teacher_submission_write.png" alt="" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>과제 수정</h5>
-            <img src="./images/teacher_submission_edit.png" alt="" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>과제 정보 조회</h5>
-            <img src="./images/teacher_submission_view.png" alt="" width="200" />  
-        </td>
-    </tr>
-    <tr>
-      <td align="center">
-        <div>✔ 로그인 시 초기 페이지입니다.</div>
-        <div>✔ 과목 관리 목록 페이지입니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 과목 등록에 필요한 정보를 입력하는 모달창을 띄워줍니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 과목 수정에 필요한 정보를 수정하는 모달창을 띄워줍니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 과제 제출 및 채점 현황을 보여주는 리스트입니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 과제 등록에 필요한 정보를 입력하는 페이지입니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 과제 수정에 필요한 정보를 수정하는 페이지입니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 등록한 과제 정보를 조회하는 페이지입니다.</div>
-      </td>
-    </tr>
-</table>
-<table>
-    <tr>
-        <td align="center" width="200">
-            <h5>공지사항 목록</h5>
-            <img src="./images/teacher_notice_list.png" alt="교수 공지사항 리스트" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>공지사항 상세</h5>
-            <img src="./images/teacher_notice_view.png" alt="교수 공지사항 상세" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>아이디 찾기</h5>
-            <img src="./images/teacher_id_find.png" alt="교수 아이디 찾기" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>비밀번호 찾기</h5>
-            <img src="./images/teacher_password_find.png" alt="교수 비밀번호 찾기" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>개인 정보 수정 비밀번호 확인</h5>
-            <img src="./images/teacher_info_edit_password.png" alt="교수 개인 정보 수정 비밀번호 확인" width="200" />  
+            <h5>회원가입</h5>
+            <img src="./images/biz_sign_up.png" alt="기업 회원 회원가입" width="200" />  
         </td>
         <td align="center" width="200">
             <h5>개인 정보 수정</h5>
-            <img src="./images/teacher_info_edit.png" alt="교수 개인 정보 수정" width="200" />  
+            <img src="./images/biz_info_edit.png" alt="기업 회원 개인 정보 수정" width="200" />  
         </td>
         <td align="center" width="200">
-            <h5>과제별 채점 리스트</h5>
-            <img src="./images/teacher_submission_grading_list.png" alt="과제별 채점 리스트" width="200" />  
+            <h5>비밀번호 수정</h5>
+            <img src="./images/biz_password_edit.png" alt="기업 회원 비밀번호 수정" width="200" />  
         </td>
         <td align="center" width="200">
-            <h5>과제 채점 및 피드백 작성</h5>
-            <img src="./images/teacher_submission_grading_feedback.png" alt="과제 채점 및 피드백 작성" width="200" />  
+            <h5>숙소 관리</h5>
+            <img src="./images/biz_acco.png" alt="숙소 관리" width="200" />  
+        </td>
+        <td align="center" width="200">
+            <h5>객실 관리</h5>
+            <img src="./images/biz_room.png" alt="객실 관리" width="200" />  
         </td>
     </tr>
     <tr>
       <td align="center">
-        <div>✔ 공지사항 목록을 배경색만 녹색으로 보여줍니다.</div>
+        <div>✔ </div>
       </td>
       <td align="center">
-        <div>✔ 공지사항 상세 페이지를 배경색만 녹색으로 보여줍니다.</div>
+        <div>✔ </div>
       </td>
       <td align="center">
-        <div>✔ 아이디 찾기 페이지입니다.</div>
+        <div>✔ </div>
       </td>
       <td align="center">
-        <div>✔ 비밀번호 찾기 페이지입니다.</div>
+        <div>✔ </div>
       </td>
       <td align="center">
-        <div>✔ 개인 정보 변경 전 비밀번호 확인 페이지입니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 개인 정보 수정하는 페이지입니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 만든 과제에 대해 채점 현황을 보여주는 페이지입니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 개인별 과제 점수 및 피드백을 작성하는 페이지입니다.</div>
+        <div>✔ </div>
       </td>
     </tr>
 </table>
 
-
-### 4. 학생
-
-<table>
-    <tr>
-        <td align="center" width="200">
-            <h5>수강 신청 페이지</h5>
-            <img src="./images/student_subject_list.png" alt="수강 신청 리스트" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>과제 관리 목록</h5>
-            <img src="./images/student_submission_list.png" alt="과제 관리 리스트" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>과제 작성</h5>
-            <img src="./images/student_submission_write.png" alt="과제 작성" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>과제 상세 조회</h5>
-            <img src="./images/student_submission_view.png" alt="과제 상세 조회" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>제출한 과제 상세 조회</h5>
-            <img src="./images/student_my_submission_view.png" alt="제출한 과제 상세 조회" width="200" />  
-        </td>
-    </tr>
-    <tr>
-      <td align="center">
-        <div>✔ 수강 신청 및 취소 페이지입니다.</div>
-        <div>✔ 신청기간에 날짜에 포함되어 있어야 수강 신청 가능합니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 내가 신청한 과목의 모든 과제현황을 보여주는 페이지입니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 내가 선택한 과제 제출을 위해 작성하는 페이지입니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 교수가 작성한 과제의 상세 내용을 볼 수 있는 페이지입니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 내가 제출한 과제의 상세 내용을 볼 수 있는 페이지입니다.</div>
-        <div>✔ 프론트엔드, 백엔드에서 수정 및 삭제 기능을 마감 기한에 맞게 가능 또는 불가능하게 구현하였습니다.</div>
-      </td>
-    </tr>
-</table>
-<table>
-    <tr>
-        <td align="center" width="200">
-            <h5>공지사항 목록</h5>
-            <img src="./images/student_notice_list.png" alt="학생 공지사항 목록" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>공지사항 상세</h5>
-            <img src="./images/student_notice_view.png" alt="학생 공지사항 상세" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>아이디 찾기</h5>
-            <img src="./images/student_id_find.png" alt="학생 아이디 찾기" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>비밀번호 찾기</h5>
-            <img src="./images/student_password_find.png" alt="학생 비밀번호 찾기" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>개인 정보 수정 비밀번호 확인</h5>
-            <img src="./images/student_info_edit_password.png" alt="학생 개인 정보 수정 비밀번호 확인" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>개인 정보 수정</h5>
-            <img src="./images/student_info_edit.png" alt="학생 개인 정보 수정" width="200" />  
-        </td>
-    </tr>
-    <tr>
-      <td align="center">
-        <div>✔ 공지사항 목록을 배경색만 남색으로 보여줍니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 공지사항 상세 페이지를 배경색만 녹색으로 보여줍니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 아이디 찾기 페이지입니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 비밀번호 찾기 페이지입니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 개인 정보 변경 전 비밀번호 확인 페이지입니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 개인 정보 수정하는 페이지입니다.</div>
-      </td>
-    </tr>
-</table>
 <div align="right"><a href="#tableContents">목차로 이동</a></div>
 
 <br/>
