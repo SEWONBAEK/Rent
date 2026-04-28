@@ -219,6 +219,22 @@ Naver 및 Kakao OAuth 2.0을 연동하여 로그인 편의성을 높였고, Kaka
             <h5>개인 정보 수정</h5>
             <img src="./images/user_info_edit.png" alt="일반 회원 개인 정보 수정" width="200" />  
         </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <div>✔ 회원가입 페이지입니다.</div>
+        <div>✔ 약관동의 체크 사항은 DB에 저장됩니다.</div>
+      </td>
+      <td align="center">
+        <div>✔ 회원가입한 정보 또는 소셜 로그인으로 로그인합니다.</div>
+      </td>
+      <td align="center">
+        <div>✔ 닉네임, 휴대폰 번호, 비밀번호를 수정할 수 있습니다.</div>
+      </td>
+    </tr>
+</table>
+<table>
+    <tr>
         <td align="center" width="200">
             <h5>문의 내역</h5>
             <img src="./images/user_question_list.png" alt="일반 회원 문의 내역" width="200" />  
@@ -233,16 +249,6 @@ Naver 및 Kakao OAuth 2.0을 연동하여 로그인 편의성을 높였고, Kaka
         </td>
     </tr>
     <tr>
-      <td align="center">
-        <div>✔ 회원가입 페이지입니다.</div>
-        <div>✔ 약관동의 체크 사항은 DB에 저장됩니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 회원가입한 정보 또는 소셜 로그인으로 로그인합니다.</div>
-      </td>
-      <td align="center">
-        <div>✔ 닉네임, 휴대폰 번호, 비밀번호를 수정할 수 있습니다.</div>
-      </td>
       <td align="center">
         <div>✔ 내가 문의한 문의 내역 목록을 보여줍니다.</div>
         <div>✔ 문의 내역 제목을 클릭하여 답변 내역을 확인 가능합니다.</div>
