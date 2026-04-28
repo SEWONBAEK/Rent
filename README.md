@@ -258,7 +258,7 @@ Naver 및 Kakao OAuth 2.0을 연동하여 로그인 편의성을 높였고, Kaka
         </td>
     </tr>
     <tr>
-      <td align="center">
+      <td align="left">
         <div>✔ 숙소 예약 페이지 및 결제 완료 및 실패입니다.</div>
         <div>✔ 예약자 정보 및 예약날짜 선택 후 결제정보를 선택하여 예약합니다.</div>
         <div>✔ 계좌이체와 카드결제는 사업자정보가 있어야 해서 결제 완료로 바로 이동합니다.</div>
