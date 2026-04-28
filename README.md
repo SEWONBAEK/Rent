@@ -294,19 +294,51 @@ Naver 및 Kakao OAuth 2.0을 연동하여 로그인 편의성을 높였고, Kaka
     </tr>
     <tr>
       <td align="center">
-        <div>✔ </div>
+        <div>✔ 기업 회원은 약관 동의를 일반 회원과 다른 테이블로 관리합니다.</div>
       </td>
       <td align="center">
-        <div>✔ </div>
+        <div>✔ 사업자명, 회사명, 전화번호, 사업자등록번호를 수정할 수 있습니다.</div>
       </td>
       <td align="center">
-        <div>✔ </div>
+        <div>✔ 비밀번호 수정 페이지입니다.</div>
       </td>
       <td align="center">
-        <div>✔ </div>
+        <div>✔ 숙소 등록, 수정 페이지입니다.</div>
+        <div>✔ 숙소를 등록해야 수정 가능하도록 프론트엔드, 백엔드에서 구현하였습니다.</div>
       </td>
       <td align="center">
-        <div>✔ </div>
+        <div>✔ 객실 등록, 삭제 페이지입니다.</div>
+        <div>✔ 숙소 등록 시 페이지에 들어올 수 있도록 구현하였습니다.</div>
+      </td>
+    </tr>
+</table>
+
+### 4. 관리자
+
+<table>
+    <tr>
+        <td align="center" width="200">
+            <h5>회원 관리</h5>
+            <img src="./images/admin_user_manage.png" alt="관리자 회원 관리" width="200" />  
+        </td>
+        <td align="center" width="200">
+            <h5>문의 내역 관리</h5>
+            <img src="./images/admin_question_manage.png" alt="관리자 문의 내역 관리" width="200" />  
+        </td>
+        <td align="center" width="200">
+            <h5>공지사항 작성</h5>
+            <img src="./images/admin_notice_write.png" alt="관리자 공지사항 작성" width="200" />  
+        </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <div>✔ 일반, 기업 회원을 관리할 수 있는 페이지입니다.</div>
+      </td>
+      <td align="center">
+        <div>✔ 문의 내역을 확인하고 작성할 수 있습니다.</div>
+      </td>
+      <td align="center">
+        <div>✔ 공지사항을 작성 페이지입니다.</div>
       </td>
     </tr>
 </table>
