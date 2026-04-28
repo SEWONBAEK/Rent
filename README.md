@@ -219,6 +219,14 @@ Naver 및 Kakao OAuth 2.0을 연동하여 로그인 편의성을 높였고, Kaka
             <h5>개인 정보 수정</h5>
             <img src="./images/user_info_edit.png" alt="일반 회원 개인 정보 수정" width="200" />  
         </td>
+        <td align="center" width="200">
+            <h5>문의 내역</h5>
+            <img src="./images/user_question_list.png" alt="일반 회원 문의 내역" width="200" />  
+        </td>
+        <td align="center" width="200">
+            <h5>예약 내역</h5>
+            <img src="./images/user_reserv_list.png" alt="일반 회원 예약 내역" width="200" />  
+        </td>
     </tr>
     <tr>
       <td align="center">
@@ -231,24 +239,6 @@ Naver 및 Kakao OAuth 2.0을 연동하여 로그인 편의성을 높였고, Kaka
       <td align="center">
         <div>✔ 닉네임, 휴대폰 번호, 비밀번호를 수정할 수 있습니다.</div>
       </td>
-    </tr>
-</table>
-<table>
-    <tr>
-        <td align="center" width="200">
-            <h5>문의 내역</h5>
-            <img src="./images/user_question_list.png" alt="일반 회원 문의 내역" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>예약 내역</h5>
-            <img src="./images/user_reserv_list.png" alt="일반 회원 예약 내역" width="200" />  
-        </td>
-        <td align="center" width="200">
-            <h5>숙소 결제</h5>
-            <img src="./images/user_payment.png" alt="일반 회원 숙소 결제" width="200" />  
-        </td>
-    </tr>
-    <tr>
       <td align="center">
         <div>✔ 내가 문의한 문의 내역 목록을 보여줍니다.</div>
         <div>✔ 문의 내역 제목을 클릭하여 답변 내역을 확인 가능합니다.</div>
@@ -257,6 +247,17 @@ Naver 및 Kakao OAuth 2.0을 연동하여 로그인 편의성을 높였고, Kaka
         <div>✔ 예약 내역의 상세정보를 보여줍니다.</div>
         <div>✔ 예약한 숙소를 취소할 수 있습니다.</div>
       </td>
+
+    </tr>
+</table>
+<table>
+    <tr>
+        <td align="center" width="600">
+            <h5>숙소 결제</h5>
+            <img src="./images/user_payment.png" alt="일반 회원 숙소 결제" width="600" />  
+        </td>
+    </tr>
+    <tr>
       <td align="center">
         <div>✔ 숙소 예약 페이지 및 결제 완료 및 실패입니다.</div>
         <div>✔ 예약자 정보 및 예약날짜 선택 후 결제정보를 선택하여 예약합니다.</div>
