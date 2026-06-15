@@ -204,7 +204,6 @@ Naver 및 Kakao OAuth 2.0을 연동하여 로그인 편의성을 높였고, Kaka
 </table>
 
 ### 2. 일반 회원
-
 <table>
     <tr>
         <td align="center" width="200">
